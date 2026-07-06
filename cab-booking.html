@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vaikom Cabs & Car Rentals — Kerala Travel</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --rido-forest: #1e4927;
+    --rido-mint: #c5edcb;
+    --rido-mint-half: rgba(197, 237, 203, 0.5);
+    --rido-mint-opaque: rgba(197, 237, 203, 0.12);
+    --rido-dark: #0b0d0c;
+    --rido-card-bg: #141715;
+    --rido-border: rgba(197, 237, 203, 0.1);
+    --rido-white: #ffffff;
+    --rido-gray: #8a928c;
+    --rido-gradient-green: linear-gradient(135deg, #1e4927 0%, #14321b 100%);
+    --rido-gradient-dark: linear-gradient(135deg, #141715 0%, #0d0f0e 100%);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--rido-dark);
+    color: var(--rido-white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ─── NAVBAR ─── */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(11, 13, 12, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rido-border);
+    transition: all 0.3s ease;
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--rido-white);
+    letter-spacing: -0.5px;
+  }
+
+  .logo span {
+    color: var(--rido-mint);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--rido-gray);
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--rido-mint);
+  }
+
+  .nav-cta {
+    background: var(--rido-forest);
+    color: var(--rido-white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(30, 73, 39, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .nav-cta:hover {
+    background: #255a30;
+    transform: translateY(-1px);
+  }
+
+  /* ─── HERO & BOOKING CONSOLE ─── */
+  .hero-section {
+    padding: 160px 0 100px;
+    position: relative;
+    background: radial-gradient(circle at 80% 20%, rgba(30, 73, 39, 0.15) 0%, rgba(0,0,0,0) 60%);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  @media (max-width: 991.98px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+
+  .hero-info {
+    max-width: 600px;
+  }
+
+  .hero-kicker {
+    color: var(--rido-mint);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+
+  .hero-title {
+    font-size: clamp(38px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--rido-gray);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .hero-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .rating-stars {
+    color: #f0a500;
+    display: flex;
+    gap: 4px;
+    font-size: 18px;
+  }
+
+  .rating-text {
+    font-size: 13px;
+    color: var(--rido-gray);
+  }
+
+  /* Booking Form Console */
+  .rido-console {
+    background: var(--rido-gradient-dark);
+    border: 1px solid var(--rido-border);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    position: relative;
+  }
+
+  .rido-tabs {
+    display: flex;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .rido-tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    color: var(--rido-gray);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    background: transparent;
+  }
+
+  .rido-tab.active {
+    background: var(--rido-forest);
+    color: var(--rido-white);
+    box-shadow: 0 4px 12px rgba(30, 73, 39, 0.3);
+  }
+
+  .rido-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .rido-form-full {
+    grid-column: span 2;
+  }
+
+  @media (max-width: 480px) {
+    .rido-form {
+      grid-template-columns: 1fr;
+    }
+    .rido-form-full {
+      grid-column: span 1;
+    }
+  }
+
+  .rido-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rido-input-group label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--rido-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .rido-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .rido-input-icon {
+    position: absolute;
+    left: 16px;
+    color: var(--rido-mint);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .rido-input-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .rido-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--rido-border);
+    border-radius: 10px;
+    padding: 14px 16px 14px 48px;
+    color: var(--rido-white);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .rido-input:focus {
+    outline: none;
+    border-color: var(--rido-mint);
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 0 3px var(--rido-mint-opaque);
+  }
+
+  .rido-select {
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .rido-select-arrow {
+    position: absolute;
+    right: 16px;
+    color: var(--rido-gray);
+    pointer-events: none;
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+    display: flex;
+    align-items: center;
+  }
+
+  .rido-btn {
+    background: var(--rido-forest);
+    color: var(--rido-white);
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(30, 73, 39, 0.4);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .rido-btn:hover {
+    background: #255a30;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 73, 39, 0.5);
+  }
+
+  .rido-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  /* ─── SERVICES GRID ─── */
+  .services-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--rido-border);
+    background: #0d0f0e;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-title {
+    font-size: clamp(30px, 4vw, 40px);
+    font-weight: 800;
+    margin-top: 10px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+  }
+
+  .service-card {
+    background: var(--rido-gradient-dark);
+    border: 1px solid var(--rido-border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--rido-mint-half);
+  }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--rido-mint-opaque);
+    color: var(--rido-mint);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .service-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  .service-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    color: var(--rido-gray);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ─── VEHICLE FLEET ─── */
+  .fleet-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--rido-border);
+  }
+
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .rido-car-card {
+    background: rgba(20, 23, 21, 0.6);
+    border: 1px solid var(--rido-border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 240px;
+    transition: all 0.3s ease;
+  }
+
+  .rido-car-card:hover {
+    border-color: var(--rido-mint-half);
+    background: rgba(30, 73, 39, 0.05);
+    transform: scale(1.02);
+  }
+
+  .rido-car-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .rido-car-tag {
+    color: var(--rido-mint);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .rido-car-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--rido-white);
+  }
+
+  .rido-car-desc {
+    font-size: 14px;
+    color: var(--rido-gray);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .rido-car-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+  }
+
+  .rido-price-val {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--rido-white);
+  }
+
+  .rido-price-unit {
+    font-size: 12px;
+    color: var(--rido-gray);
+    display: block;
+    margin-top: -4px;
+  }
+
+  .fleet-cta {
+    background: transparent;
+    border: 1px solid var(--rido-mint);
+    color: var(--rido-mint);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .fleet-cta:hover {
+    background: var(--rido-mint);
+    color: var(--rido-dark);
+  }
+
+  /* ─── BENEFITS & WHY CHOOSE US ─── */
+  .why-section {
+    padding: 100px 0;
+    background: #0d0f0e;
+    border-top: 1px solid var(--rido-border);
+  }
+
+  .benefits-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .benefits-row {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  .benefit-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .benefit-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--rido-mint-opaque);
+    color: var(--rido-mint);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .benefit-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+  }
+
+  .benefit-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .benefit-desc {
+    color: var(--rido-gray);
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--rido-border);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .testimonial-card {
+    background: var(--rido-gradient-dark);
+    border: 1px solid var(--rido-border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .testimonial-stars {
+    color: #f0a500;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .testimonial-text {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .testimonial-user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .user-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #252825;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--rido-mint);
+    border: 1.5px solid var(--rido-border);
+  }
+
+  .user-info h5 {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .user-info span {
+    font-size: 12px;
+    color: var(--rido-gray);
+  }
+
+  /* ─── FAQ ACCORDIONS ─── */
+  .faq-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--rido-border);
+    background: #0d0f0e;
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .faq-item {
+    background: var(--rido-gradient-dark);
+    border: 1px solid var(--rido-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: var(--rido-white);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .faq-question svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.open .faq-question svg {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .faq-answer-content {
+    padding: 0 28px 24px;
+    color: var(--rido-gray);
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: var(--rido-gradient-green);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .cta-band h2 {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  .cta-band p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+  }
+
+  .cta-btn {
+    background: var(--rido-white);
+    color: var(--rido-forest);
+    padding: 16px 36px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--rido-mint);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .cta-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--rido-dark);
+    padding: 80px 0 40px;
+    border-top: 1px solid var(--rido-border);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 48px;
+    margin-bottom: 60px;
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  .footer-brand h4 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  .footer-brand h4 span {
+    color: var(--rido-mint);
+  }
+
+  .footer-desc {
+    color: var(--rido-gray);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .footer-col h5 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--rido-white);
+    margin-bottom: 24px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    color: var(--rido-gray);
+    font-size: 14px;
+    font-weight: 300;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--rido-mint);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--rido-border);
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--rido-gray);
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  @media (max-width: 600px) {
+    .footer-bottom {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
+
+  .footer-copy a {
+    color: var(--rido-mint);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <div class="container nav-container">
+    <a href="index.html" class="logo">Vaikom<span>Cabs</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#fleet">Our Fleet</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="tel:+919947478328" class="nav-cta">Call +91 99474 78328</a>
+  </div>
+</header>
+
+<!-- ═══════════ HERO SECTION ═══════════ -->
+<section class="hero-section">
+  <div class="container hero-grid">
+    <div class="hero-info">
+      <span class="hero-kicker">Fort Kochi & Airport Cabs</span>
+      <h1 class="hero-title">Get a Reliable Ride in Minutes.</h1>
+      <p class="hero-desc">Vaikom Backwater tour partners offer professional taxi services and self-drive car rentals across Kochi. Enjoy pre-booked airport transfers, local village rides, and outstation trips with safe drivers.</p>
+      <div class="hero-badge-row">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-text"><strong>4.9/5 Rating</strong> based on over 1,200 local trips.</div>
+      </div>
+    </div>
+
+    <!-- Interactive Booking Console -->
+    <div class="rido-console">
+      <div class="rido-tabs" role="tablist">
+        <button type="button" class="rido-tab active" id="tab-taxi" data-tab="taxi" role="tab" aria-selected="true">Taxi / Private Cab</button>
+        <button type="button" class="rido-tab" id="tab-rental" data-tab="rental" role="tab" aria-selected="false">Self-Drive Rental</button>
+      </div>
+
+      <form id="ridoBookingForm" class="rido-form">
+        <input type="hidden" name="bookingType" id="ridoBookingType" value="taxi">
+        
+        <div class="rido-input-group rido-form-full">
+          <label for="ridoName">Your Full Name</label>
+          <div class="rido-input-wrapper">
+            <div class="rido-input-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <input type="text" id="ridoName" name="name" class="rido-input" placeholder="Enter your full name" required>
+          </div>
+        </div>
+
+        <div class="rido-input-group">
+          <label for="ridoPhone">Phone / WhatsApp</label>
+          <div class="rido-input-wrapper">
+            <div class="rido-input-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <input type="tel" id="ridoPhone" name="phone" class="rido-input" placeholder="e.g. +91 99474..." required>
+          </div>
+        </div>
+
+        <div class="rido-input-group">
+          <label for="ridoVehicle">Select Vehicle Type</label>
+          <div class="rido-input-wrapper">
+            <div class="rido-input-icon">
+              <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+            </div>
+            <select id="ridoVehicle" name="vehicle" class="rido-input rido-select" required>
+              <option value="Sedan">Sedan (Economy, Maruti Dzire)</option>
+              <option value="SUV">SUV (Comfort Family, Innova)</option>
+              <option value="Premium SUV">Premium SUV (Innova Crysta)</option>
+            </select>
+            <div class="rido-select-arrow">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="rido-input-group rido-form-full">
+          <label for="ridoPickup" id="lblPickup">Pick-up Location</label>
+          <div class="rido-input-wrapper">
+            <div class="rido-input-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <input type="text" id="ridoPickup" name="pickup" class="rido-input" placeholder="e.g. Fort Kochi Hotel / Cochin Airport" required>
+          </div>
+        </div>
+
+        <div class="rido-input-group rido-form-full" id="grpDropoff">
+          <label for="ridoDropoff">Drop-off Location</label>
+          <div class="rido-input-wrapper">
+            <div class="rido-input-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <input type="text" id="ridoDropoff" name="dropoff" class="rido-input" placeholder="e.g. Vaikom Village Tour / Hotel" required>
+          </div>
+        </div>
+
+        <div class="rido-input-group">
+          <label for="ridoDate" id="lblDate">Pick-up Date</label>
+          <div class="rido-input-wrapper">
+            <div class="rido-input-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+            </div>
+            <input type="date" id="ridoDate" name="date" class="rido-input" required>
+          </div>
+        </div>
+
+        <div class="rido-input-group">
+          <label for="ridoTime" id="lblTime">Pick-up Time</label>
+          <div class="rido-input-wrapper">
+            <div class="rido-input-icon">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            </div>
+            <input type="time" id="ridoTime" name="time" class="rido-input" required>
+          </div>
+        </div>
+
+        <div class="rido-form-full">
+          <button type="submit" class="rido-btn">
+            <span>Book via WhatsApp</span>
+            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES SECTION ═══════════ -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="hero-kicker">What We Offer</span>
+      <h2 class="section-title">Flexible Transport Solutions</h2>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/></svg>
+        </div>
+        <h3 class="service-title">City Taxis</h3>
+        <p class="service-desc">Safe, quick point-to-point rides around Fort Kochi, Vaikom, and local sightseeing spots. Available on short notice.</p>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21.99 8c0-.72-.37-1.35-.94-1.7L12 1 2.95 6.3C2.38 6.65 2 7.28 2 8v8c0 .72.37 1.35.94 1.7L12 23l9.05-5.3c.57-.35.94-.98.94-1.7V8z"/></svg>
+        </div>
+        <h3 class="service-title">Airport Transfers</h3>
+        <p class="service-desc">Enjoy reliable, timely pickups or drop-offs for Cochin International Airport (COK). Meet-and-greet service included.</p>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.47 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+        </div>
+        <h3 class="service-title">Outstation Rides</h3>
+        <p class="service-desc">Venture out to Munnar, Alleppey, Kumarakom, or Vagamon. Relax while our expert local drivers navigate the terrain.</p>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.47 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <h3 class="service-title">Self-Drive Rentals</h3>
+        <p class="service-desc">Rent a vehicle daily or weekly. Total freedom to drive clean Hatchbacks, Sedans, or SUVs at flat rates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FLEET SECTION ═══════════ -->
+<section class="fleet-section" id="fleet">
+  <div class="container">
+    <div class="section-header">
+      <span class="hero-kicker">Our Vehicle Fleet</span>
+      <h2 class="section-title">Select Your Preferred Ride</h2>
+    </div>
+
+    <div class="fleet-grid">
+      <!-- Sedan -->
+      <div class="rido-car-card">
+        <div class="rido-car-info">
+          <span class="rido-car-tag">Economy Comfort</span>
+          <h4 class="rido-car-name">Sedan (Maruti Dzire)</h4>
+          <p class="rido-car-desc">Perfect for couples and quick transfers. Air-conditioned, up to 4 passengers + luggage.</p>
+        </div>
+        <div class="rido-car-price">
+          <div>
+            <span class="rido-price-val">₹2,200</span>
+            <span class="rido-price-unit">Fort Kochi Flat Rate</span>
+          </div>
+          <button type="button" class="fleet-cta" onclick="selectCar('Sedan')">Select</button>
+        </div>
+      </div>
+
+      <!-- SUV -->
+      <div class="rido-car-card">
+        <div class="rido-car-info">
+          <span class="rido-car-tag">Family / Group Ride</span>
+          <h4 class="rido-car-name">SUV (Toyota Innova)</h4>
+          <p class="rido-car-desc">Spacious seating, great for small families or tours. Air-conditioned, up to 6 passengers.</p>
+        </div>
+        <div class="rido-car-price">
+          <div>
+            <span class="rido-price-val">₹3,500</span>
+            <span class="rido-price-unit">Fort Kochi Flat Rate</span>
+          </div>
+          <button type="button" class="fleet-cta" onclick="selectCar('SUV')">Select</button>
+        </div>
+      </div>
+
+      <!-- Premium SUV -->
+      <div class="rido-car-card">
+        <div class="rido-car-info">
+          <span class="rido-car-tag">Luxury Travel</span>
+          <h4 class="rido-car-name">Innova Crysta Premium</h4>
+          <p class="rido-car-desc">Top-of-the-line luxury and comfort. Captain seats, extra boot space, dual AC.</p>
+        </div>
+        <div class="rido-car-price">
+          <div>
+            <span class="rido-price-val">₹4,500</span>
+            <span class="rido-price-unit">Fort Kochi Flat Rate</span>
+          </div>
+          <button type="button" class="fleet-cta" onclick="selectCar('Premium SUV')">Select</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHY CHOOSE US SECTION ═══════════ -->
+<section class="why-section" id="why">
+  <div class="container">
+    <div class="section-header">
+      <span class="hero-kicker">Why Rido Vaikom</span>
+      <h2 class="section-title">Built for Speed, Safety & Ease</h2>
+    </div>
+
+    <div class="benefits-row">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.47 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <h4 class="benefit-title">24/7 Availability</h4>
+        <p class="benefit-desc">Need a ride at 3 AM for an early airport flight or late backwater tour pickup? We have cars on standby ready for you.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        </div>
+        <h4 class="benefit-title">Safe, Licensed Drivers</h4>
+        <p class="benefit-desc">All our drivers are background-checked, local Kerala experts who focus on smooth, safe, and professional transfers.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.47 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+        </div>
+        <h4 class="benefit-title">No Hidden Fees</h4>
+        <p class="benefit-desc">What you see is what you pay. Transparent flat rates inclusive of driver allowance, fuel, and standard passenger taxes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIALS SECTION ═══════════ -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="hero-kicker">Happy Passengers</span>
+      <h2 class="section-title">What Our Riders Say</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <!-- Review 1 -->
+      <div class="testimonial-card">
+        <div>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Great experience! Booking was seamless via WhatsApp, the driver arrived 10 minutes early at our Fort Kochi hotel, and the Crysta was spotless. Best way to get to the Vaikom village tour."</p>
+        </div>
+        <div class="testimonial-user">
+          <div class="user-avatar">MT</div>
+          <div class="user-info">
+            <h5>Mike Thompson</h5>
+            <span>United Kingdom</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="testimonial-card">
+        <div>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"We rented a self-drive sedan for 3 days to explore Kumarakom and Vaikom. The car was delivered directly to our homestay, clean and fully fueled. Friendly staff and simple checkout!"</p>
+        </div>
+        <div class="testimonial-user">
+          <div class="user-avatar">SL</div>
+          <div class="user-info">
+            <h5>Sarah Lenor</h5>
+            <span>Germany</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="testimonial-card">
+        <div>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Outstanding service! The driver was extremely polite, acted as a helpful local guide, and drove very safely. Highly recommend for airport transfers in Kochi."</p>
+        </div>
+        <div class="testimonial-user">
+          <div class="user-avatar">MC</div>
+          <div class="user-info">
+            <h5>Michael Carter</h5>
+            <span>Australia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ SECTION ═══════════ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="hero-kicker">Have Questions?</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-list">
+      <!-- FAQ 1 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How do I confirm my booking?</span>
+          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            When you fill out the console and submit, a pre-filled WhatsApp message will open on your device. Just send the message, and our local dispatcher will check vehicle availability and confirm your booking in minutes.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Are airport toll charges included in flat rates?</span>
+          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Yes! Our flat rates to/from Fort Kochi or Cochin Airport are completely all-inclusive of standard highway toll fees, parking, driver allowance, and fuel.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What is required for a Self-Drive Rental?</span>
+          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            For self-drive rentals, you must provide a valid driving license (International driving permit for foreign nationals), a government ID (Passport/Aadhaar card), and a security deposit which is 100% refundable upon safe return of the car.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA BAND ═══════════ -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Ready to Start Your Journey?</h2>
+    <p>Get in touch with us to lock in a premium cab or delivery car rental for your Kerala adventure.</p>
+    <a href="https://wa.me/919947478328?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20a%20cab%20booking%20or%20car%20rental." class="cta-btn" target="_blank" rel="noopener">
+      <span>Inquire on WhatsApp</span>
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Vaikom<span>Cabs</span></h4>
+        <p class="footer-desc">Professional cab transfers and self-drive rental services supporting Vaikom backwater tour guides. Operating out of Fort Kochi, Kerala.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <div class="footer-links">
+          <a href="index.html">Tour Homepage</a>
+          <a href="#services">Our Services</a>
+          <a href="#fleet">Our Fleet</a>
+          <a href="#faq">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <div class="footer-links">
+          <a href="#">Airport Drop/Pickup</a>
+          <a href="#">Fort Kochi Sightseeing</a>
+          <a href="#">Vaikom Village Transfers</a>
+          <a href="#">Self-Drive Packages</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <div class="footer-links">
+          <a href="tel:+919947478328">Call: +91 99474 78328</a>
+          <a href="mailto:Arafathappu52@gmail.com">Arafathappu52@gmail.com</a>
+          <a href="#">Office: Fort Kochi, Kerala</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 <a href="index.html">Vaikom Backwater Village Tour</a>. All rights reserved.</div>
+      <div>Designed in Rido Style</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const whatsappNumber = '919947478328';
+
+  // ─── RIDO CAB & CAR RENTAL BOOKING LOGIC ───
+  const ridoForm = document.getElementById('ridoBookingForm');
+  const ridoTabs = document.querySelectorAll('.rido-tab');
+  const ridoBookingType = document.getElementById('ridoBookingType');
+  const grpDropoff = document.getElementById('grpDropoff');
+  const ridoPickup = document.getElementById('ridoPickup');
+  const ridoDropoff = document.getElementById('ridoDropoff');
+  const ridoDate = document.getElementById('ridoDate');
+
+  if (ridoDate) {
+    ridoDate.min = new Date().toISOString().split('T')[0];
+  }
+
+  ridoTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      ridoTabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      
+      const type = tab.getAttribute('data-tab');
+      ridoBookingType.value = type;
+
+      if (type === 'rental') {
+        grpDropoff.style.display = 'none';
+        ridoDropoff.removeAttribute('required');
+        ridoPickup.placeholder = 'e.g. Cochin Airport / Fort Kochi Delivery Office';
+        document.getElementById('lblPickup').textContent = 'Delivery / Pick-up Location';
+        document.getElementById('lblDate').textContent = 'Rental Start Date';
+        document.getElementById('lblTime').textContent = 'Rental Start Time';
+      } else {
+        grpDropoff.style.display = 'flex';
+        ridoDropoff.setAttribute('required', '');
+        ridoPickup.placeholder = 'e.g. Fort Kochi Hotel / Cochin Airport';
+        document.getElementById('lblPickup').textContent = 'Pick-up Location';
+        document.getElementById('lblDate').textContent = 'Pick-up Date';
+        document.getElementById('lblTime').textContent = 'Pick-up Time';
+      }
+    });
+  });
+
+  if (ridoForm) {
+    ridoForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const formData = new FormData(ridoForm);
+      const bookingType = formData.get('bookingType');
+      
+      const isTaxi = bookingType === 'taxi';
+      const titleLine = isTaxi ? 'Rido Taxi / Private Cab Booking Request' : 'Rido Self-Drive Car Rental Request';
+      
+      const messageParts = [
+        titleLine,
+        '----------------------------------------',
+        `Name: ${formData.get('name')}`,
+        `Contact: ${formData.get('phone')}`,
+        `Vehicle Category: ${formData.get('vehicle')}`,
+        isTaxi ? `Pick-up: ${formData.get('pickup')}` : `Delivery/Pick-up: ${formData.get('pickup')}`,
+      ];
+
+      if (isTaxi) {
+        messageParts.push(`Drop-off: ${formData.get('dropoff')}`);
+        messageParts.push(`Date: ${formData.get('date')}`);
+        messageParts.push(`Time: ${formData.get('time')}`);
+      } else {
+        messageParts.push(`Start Date: ${formData.get('date')}`);
+        messageParts.push(`Start Time: ${formData.get('time')}`);
+      }
+
+      messageParts.push('', 'Please confirm availability and finalize the reservation.');
+
+      const message = messageParts.join('\n');
+      const baseUrl = whatsappNumber ? `https://wa.me/${whatsappNumber}` : 'https://wa.me/';
+      window.open(`${baseUrl}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+    });
+  }
+
+  function selectCar(category) {
+    document.getElementById('ridoVehicle').value = category;
+    document.getElementById('ridoVehicle').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Light effect flash
+    const input = document.getElementById('ridoVehicle');
+    input.style.borderColor = '#c5edcb';
+    setTimeout(() => {
+      input.style.borderColor = 'rgba(197, 237, 203, 0.1)';
+    }, 1000);
+  }
+
+  // ─── FAQ ACCORDIONS ───
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.parentNode;
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+      
+      // Close all FAQs first
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-answer').style.maxHeight = '0px';
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+</body>
+</html>
